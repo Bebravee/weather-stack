@@ -20,7 +20,7 @@ type weatherProvider interface {
 type weatherStorage interface {
 	weatherCreater
 	weatherProvider
-	userProvider
+	//userProvider
 }
 
 type WeatherService struct {
