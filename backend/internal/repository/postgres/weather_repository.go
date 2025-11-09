@@ -28,7 +28,7 @@ func (r *WeatherRepository) GetWeatherByCity(ctx context.Context, city string) (
 
 	return weather, nil
 }
-
+/*
 func (r *WeatherRepository) GetClothesByComb(ctx context.Context, id int) ([]*domain.WeatherClothesEntity, error) {
 	clothes := []*domain.WeatherClothesEntity{}
 
@@ -48,3 +48,4 @@ func (r *WeatherRepository) GetNewsByCity(ctx context.Context, city string) ([]*
 
 	return news, nil
 }
+*/

@@ -48,7 +48,7 @@ func (cn *userController) RegisterHandler(c *fiber.Ctx) error {
 		T_tol:		req.t_tol,
 		T_puh:		req.t_puh,
 		Temp1:		req.temp1,
-		TelegramID: req.telegram_id,
+		TelegramID: req.TelegramID,
 	})
 	if err != nil {
 		log.Error(err.Error())

@@ -13,8 +13,8 @@ type weatherCreater interface {
 
 type weatherProvider interface {
 	GetWeatherByCity(context.Context, string) (*domain.WeatherEntity, error)
-	GetClothesByComb(context.Context, int) (*domain.WeatherClothesEntity, error)
-	GetNewsByCity(context.Context, string) (*domain.NewsEntity, error)
+	//GetClothesByComb(context.Context, int) (*domain.WeatherClothesEntity, error)
+	//GetNewsByCity(context.Context, string) (*domain.NewsEntity, error)
 }
 
 type weatherStorage interface {
@@ -40,14 +40,14 @@ func (s *WeatherService) CreateWeatherRecord(ctx context.Context, new *domain.We
 	return nil
 }
 
-func (s *WeatherService) GetWeather(ctx context.Context, city string) (*domain.WeatherEntity, error) {
+func (s *WeatherService) GetWeather(ctx context.Context, city string) ([]*domain.WeatherEntity, error) {
 	weather, err := s.repo.GetWeatherByCity(ctx, city)
 	if err != nil {
 		return nil, fmt.Errorf("to select a weather by city: %w", err)
 	}
 	return weather, nil
 }
-
+/*
 func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int64) (*domain.WeatherClothesEntity, error) {
 	//comb, err := s.repo.SelectByTelegramID(ctx, id)
 	clothes, err := s.repo.GetClothesByComb(ctx, 1234)
@@ -64,3 +64,4 @@ func (s *WeatherService) GetNews(ctx context.Context, city string) (*domain.News
 	}
 	return news, nil
 }
+*/

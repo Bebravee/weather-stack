@@ -63,7 +63,7 @@ func (cn *weatherController) GetWeatherHandler(c *fiber.Ctx) error {
 
 	return c.JSON(res)
 }
-
+/*
 func (cn *weatherController) GetWeatherClothesHandler(c *fiber.Ctx) error {
 	var req GetWeatherClothesRequest
 	if err := c.BodyParser(&req); err != nil {
@@ -109,3 +109,4 @@ func (cn *weatherController) GetNewsHandler(c *fiber.Ctx) error {
 
 	return c.JSON(res)
 }
+*/
