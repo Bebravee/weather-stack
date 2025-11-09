@@ -13,7 +13,7 @@ func RegisterWeatherRoutes(router fiber.Router, db *gorm.DB) {
 
 	weather := router.Group("/weather")
 	{
-		weather.Post("/record", weatherCntrl.CreateWeatherRecordHandler)
-		weather.Get("/history", weatherCntrl.GetWeatherHistoryHandler)
+		//weather.Post("/", weatherCntrl.CreateWeatherRecordHandler)
+		weather.Get("/weather", weatherCntrl.GetWeatherHistoryHandler)
 	}
 }
