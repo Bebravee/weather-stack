@@ -5,7 +5,7 @@ import (
 )
 
 type GetTelegramProfileRequest struct {
-	ID int64 `param:"telegram_id" validate:"required"`
+	ID int `param:"telegram_id" validate:"required"`
 }
 
 type GetTelegramProfileResponse struct {
@@ -21,11 +21,16 @@ type GetProfileResponse struct {
 }
 
 type RegisterProfileRequest struct {
-	Login      string `json:"login,omitempty"`
 	Name       string `json:"name" validate:"required"`
 	Sex        string `json:"sex" validate:"required"`
 	Age        int    `json:"age" validate:"required"`
-	City       string `json:"city" validate:"required"`
+	City_n     string `json:"city_n" validate:"required"`
+	City_w     string `json:"city_w" validate:"required"`
+	Drop_time  string `json:"drop" validate:"required"`
+	t_comf     int    `json:"comf" validate:"required"`
+	t_tol      int    `json:"tol" validate:"required"`
+	t_puh      int    `json:"puh" validate:"required"`
+	temp1      int    `json:"temp1" validate:"required"`
 	TelegramID int64  `json:"telegram_id,omitempty"`
 }
 
