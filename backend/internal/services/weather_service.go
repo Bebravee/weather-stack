@@ -36,3 +36,28 @@ func (s *WeatherService) CreateWeatherRecord(ctx context.Context, new *domain.We
 	}
 	return nil
 }
+
+func (s *WeatherService) GetWeather(ctx context.Context, city string) (domain.WeatherEntity, error) {
+	weather, err := s.weather.SelectByCity(ctx, city)
+	if err != nil {
+		return nil, fmt.Errorf("to select a weather by city: %w", err)
+	}
+	return weather, nil
+}
+
+func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int) (domain.WeatherEntity, error) {
+	comb, err := s.users.SelectByID(ctx, id)
+	clothes, err := s.clothes.SelectByComb(ctx, comb.temp1)
+	if err != nil {
+		return nil, fmt.Errorf("to select a weather by city: %w", err)
+	}
+	return clothes, nil
+}
+
+func (s *WeatherService) GetNews(ctx context.Context, city string) (domain.WeatherEntity, error) {
+	news, err := s.news.SelectByCity(ctx, city)
+	if err != nil {
+		return nil, fmt.Errorf("to select a weather by city: %w", err)
+	}
+	return news, nil
+}
