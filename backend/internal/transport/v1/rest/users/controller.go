@@ -42,7 +42,13 @@ func (cn *userController) RegisterHandler(c *fiber.Ctx) error {
 		Name:       req.Name,
 		Sex:        req.Sex,
 		Age:        req.Age,
-		City:       req.City,
+		City_n:     req.City_n,
+		City_w:     req.City_w,
+		Drop_time	req.Drop_time,
+		t_comf		req.t_comf,
+		t_tol		req.t_tol,
+		t_puh		req.t_puh,
+		temp1		req.temp1,
 		TelegramID: req.TelegramID,
 	})
 	if err != nil {
