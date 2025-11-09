@@ -45,7 +45,7 @@ func (s *WeatherService) GetWeather(ctx context.Context, city string) (domain.We
 	return weather, nil
 }
 
-func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int) (domain.WeatherEntity, error) {
+func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int) (domain.ClothesEntity, error) {
 	comb, err := s.users.SelectByID(ctx, id)
 	clothes, err := s.clothes.SelectByComb(ctx, comb.temp1)
 	if err != nil {
@@ -54,7 +54,7 @@ func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int) (domain.
 	return clothes, nil
 }
 
-func (s *WeatherService) GetNews(ctx context.Context, city string) (domain.WeatherEntity, error) {
+func (s *WeatherService) GetNews(ctx context.Context, city string) (domain.NewsEntity, error) {
 	news, err := s.news.SelectByCity(ctx, city)
 	if err != nil {
 		return nil, fmt.Errorf("to select a weather by city: %w", err)
