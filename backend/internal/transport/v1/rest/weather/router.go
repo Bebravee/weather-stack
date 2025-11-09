@@ -8,14 +8,14 @@ import (
 )
 
 func RegisterWeatherRoutes(router fiber.Router, db *gorm.DB) {
-	weatherRepo := postgres.NewWetherRepository(db)
+	weatherRepo := postgres.NewWeatherRepository(db)
 	weatherCntrl := NewWeatherController(weatherservice.NewWeatherService(weatherRepo))
 
 	weather := router.Group("/weather")
 	{
 		//weather.Post("/", weatherCntrl.CreateWeatherRecordHandler)
 		weather.Get("/weather", weatherCntrl.GetWeatherHandler)
-		weather.Get("/weather/clothes", weatherCntrl.GetWeatherClothesHandler)
+		//weather.Get("/weather/clothes", weatherCntrl.GetWeatherClothesHandler)
 
 		weather.Get("/news", weatherCntrl.GetNewsHandler)
 	}

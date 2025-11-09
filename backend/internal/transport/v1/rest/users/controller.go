@@ -38,18 +38,17 @@ func (cn *userController) RegisterHandler(c *fiber.Ctx) error {
 	}
 
 	userID, err := cn.s.CreateUser(c.UserContext(), &domain.UserEntity{
-		Login:      req.Login,
 		Name:       req.Name,
 		Sex:        req.Sex,
 		Age:        req.Age,
 		City_n:     req.City_n,
 		City_w:     req.City_w,
-		Drop_time	req.Drop_time,
-		t_comf		req.t_comf,
-		t_tol		req.t_tol,
-		t_puh		req.t_puh,
-		temp1		req.temp1,
-		TelegramID: req.TelegramID,
+		Drop_time:	req.Drop_time,
+		T_comf:		req.t_comf,
+		T_tol:		req.t_tol,
+		T_puh:		req.t_puh,
+		Temp1:		req.temp1,
+		TelegramID: req.telegram_id,
 	})
 	if err != nil {
 		log.Error(err.Error())

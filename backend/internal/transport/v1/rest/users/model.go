@@ -31,8 +31,7 @@ type RegisterProfileRequest struct {
 	t_tol      int    `json:"tol" validate:"required"`
 	t_puh      int    `json:"puh" validate:"required"`
 	temp1      int    `json:"temp1" validate:"required"`
-	TelegramID int64  `json:"telegram_id,omitempty"`
-}
+	TelegramID int64  `json:"telegram_id" validate:"required"`
 
 type RegisterProfileResponse struct {
 	ID domain.UserID `json:"id"`

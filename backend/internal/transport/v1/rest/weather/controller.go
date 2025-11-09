@@ -1,10 +1,13 @@
 package weathercntrl
 
 import (
+	"errors"
+
 	"github.com/chup1x/weather-stack/internal/domain"
 	weatherservice "github.com/chup1x/weather-stack/internal/services"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/log"
 )
 
 type weatherController struct {
@@ -28,9 +31,8 @@ func (cn *weatherController) CreateWeatherRecordHandler(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 
-	if err := cn.s.CreateWeatherRecord(c.UserContext(), &domain.WeatherRequestEntity{
+	if err := cn.s.CreateWeatherRecord(c.UserContext(), &domain.WeatherEntity{
 		Temperature: req.Temperature,
-		Clothing:    req.Clothing,
 	}); err != nil {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
@@ -38,7 +40,7 @@ func (cn *weatherController) CreateWeatherRecordHandler(c *fiber.Ctx) error {
 	return c.SendStatus(fiber.StatusOK)
 }
 
-func (cn *weatherController) GetWeatherHistoryHandler(c *fiber.Ctx) error {
+func (cn *weatherController) GetWeatherHandler(c *fiber.Ctx) error {
 	
 	var req GetWeatherHistoryRequest
 	if err := c.ParamsParser(&req); err != nil {
@@ -62,8 +64,8 @@ func (cn *weatherController) GetWeatherHistoryHandler(c *fiber.Ctx) error {
 	return c.JSON(res)
 }
 
-func (cn *userController) GetWeatherClothesHandler(c *fiber.Ctx) error {
-	var req GetWeatherColthesRequest
+func (cn *weatherController) GetWeatherClothesHandler(c *fiber.Ctx) error {
+	var req GetWeatherClothesRequest
 	if err := c.BodyParser(&req); err != nil {
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
@@ -71,7 +73,7 @@ func (cn *userController) GetWeatherClothesHandler(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 
-	user, err := cn.s.GetWeatherClothes(c.UserContext(), req.user)
+	clothes, err := cn.s.GetWeatherClothes(c.UserContext(), req.user)
 	if err != nil {
 		if errors.Is(err, domain.ErrUserNotFound) {
 			return c.SendStatus(fiber.StatusNotFound)
@@ -80,12 +82,12 @@ func (cn *userController) GetWeatherClothesHandler(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
-	res := GetWeatherClothesResponse{user}
+	res := GetWeatherClothesResponse{clothes}
 
 	return c.JSON(res)
 }
 
-func (cn *userController) GetNewsHandler(c *fiber.Ctx) error {
+func (cn *weatherController) GetNewsHandler(c *fiber.Ctx) error {
 	var req GetNewsRequest
 	if err := c.BodyParser(&req); err != nil {
 		return c.SendStatus(fiber.StatusUnprocessableEntity)

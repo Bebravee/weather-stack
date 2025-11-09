@@ -21,12 +21,11 @@ type UserEntity struct {
 	City_n     string `json:"city_n" gorm:"city_n"`
 	City_w     string `json:"city_w" gorm:"city_w"`
 	Drop_time  string `json:"drop" gorm:"drop"`
-	T_comf	   int	  `json:"t_com" gorm:"t_com"`
+	T_comf	   int	  `json:"t_comf" gorm:"t_comf"`
 	T_tol	   int	  `json:"t_tol" gorm:"t_tol"`
 	T_puh	   int	  `json:"t_puh" gorm:"t_puh"`
-	Passw      string `json:"sex" gorm:"sex"`
-	
+	Temp1	   int	  `json:"temp1" gorm:"temp1"`
+	Passw      string `json:"password" gorm:"password"`
 	TelegramID int64  `json:"telegram_id" gorm:"telegram_id"`
-
-	CreatedAt time.Time `json:"created_at" gorm:"created_at"`
+	CreatedAt  time.Time `json:"created_at" gorm:"created_at"`
 }
