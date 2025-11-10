@@ -17,6 +17,9 @@ func NewUserRepository(db *gorm.DB) *userRepository {
 }
 
 func (r *userRepository) Create(ctx context.Context, new *domain.UserEntity) error {
+	if err := r.db.WithContext(ctx).Table("users").Create(new).Error; err != nil {
+		r.db.Migrator().AddColumn("users", "city_n")
+	}
 	return r.db.WithContext(ctx).Table("users").Create(new).Error
 }
 

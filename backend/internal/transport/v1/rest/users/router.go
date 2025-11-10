@@ -13,7 +13,7 @@ func RegisterUserRoutes(router fiber.Router, db *gorm.DB) {
 	userCntrl := NewUserController(services.NewUserService(userRepo))
 	auth := router.Group("/auth")
 
-	auth.Post("/profile/register", userCntrl.RegisterHandler)
+	auth.Post("register", userCntrl.RegisterHandler)
 	auth.Post("/login", userCntrl.LoginHandler)
 
 	router.Get("/profile/by-id", userCntrl.GetProfileHandler)

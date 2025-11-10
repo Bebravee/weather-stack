@@ -33,14 +33,17 @@ func (p *Provider) RegisterUserHandler(c *fiber.Ctx) error {
 	var req RegisterUserRequest
 
 	if err := c.BodyParser(&req); err != nil {
+		fmt.Errorf("bla", err)
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 	if err := p.validator.Struct(req); err != nil {
+		fmt.Errorf("blab", err)
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 
 	rawBody, err := json.Marshal(req)
 	if err != nil {
+		fmt.Errorf("blabl", err)
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
@@ -56,6 +59,7 @@ func (p *Provider) RegisterUserHandler(c *fiber.Ctx) error {
 
 	res := RegisterUserResponse{}
 	if err := json.Unmarshal(body, &res); err != nil {
+		fmt.Errorf("blabla", err)
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 	return c.JSON(res)
