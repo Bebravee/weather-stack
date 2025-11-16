@@ -12,11 +12,11 @@ func RegisterWeatherRoutes(router fiber.Router, db *gorm.DB) {
 	weatherCntrl := NewWeatherController(weatherservice.NewWeatherService(weatherRepo))
 
 	weather := router.Group("/weather")
-	{
-		//weather.Post("/", weatherCntrl.CreateWeatherRecordHandler)
-		weather.Get("/weather", weatherCntrl.GetWeatherHandler)
-		//weather.Get("/weather/clothes", weatherCntrl.GetWeatherClothesHandler)
+	
+	weather.Post("/post", weatherCntrl.CreateWeatherRecordHandler)
+	weather.Get("/weather", weatherCntrl.GetWeatherHandler)
+	//weather.Get("/clothes", weatherCntrl.GetWeatherClothesHandler)
 
-		//weather.Get("/news", weatherCntrl.GetNewsHandler)
-	}
+	//weather.Get("/news", weatherCntrl.GetNewsHandler)
+	
 }

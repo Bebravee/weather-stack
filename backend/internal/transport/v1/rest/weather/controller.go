@@ -23,7 +23,7 @@ func NewWeatherController(service *weatherservice.WeatherService) *weatherContro
 }
 
 func (cn *weatherController) CreateWeatherRecordHandler(c *fiber.Ctx) error {
-	var req CreateWeatherRecord
+	var req CreateWeatherRequest
 	if err := c.BodyParser(&req); err != nil {
 		return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
@@ -32,12 +32,18 @@ func (cn *weatherController) CreateWeatherRecordHandler(c *fiber.Ctx) error {
 	}
 
 	if err := cn.s.CreateWeatherRecord(c.UserContext(), &domain.WeatherEntity{
+		CityID: req.CityID,
 		Temperature: req.Temperature,
+		FeelsLike: req.FeelsLike,
+		Description: req.Description,
+		Humidity: req.Humidity,
+		Pressure: req.Pressure,
+		WindSpeed: req.WindSpeed,
 	}); err != nil {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
-
-	return c.SendStatus(fiber.StatusOK)
+	res := CreateWeatherResponse{req.CityID}
+	return c.JSON(res)
 }
 
 func (cn *weatherController) GetWeatherHandler(c *fiber.Ctx) error {

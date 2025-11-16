@@ -5,9 +5,9 @@ import (
 )
 
 type WeatherEntity struct {
-	CITYID      string    `json:"city_id" gorm:"city_id"`
+	CityID      string    `json:"city" gorm:"city_id"`
 	Temperature float64   `json:"temperature" gorm:"temperature"`
-	FeelsLike   float64   `json:"feels" gorm:"feels"`
+	FeelsLike   float64   `json:"feels" gorm:"feels_like"`
 	Description string    `json:"description" gorm:"description"`
 	Humidity    float64   `json:"humidity" gorm:"humidity"`
 	Pressure    float64   `json:"pressure" gorm:"pressure"`

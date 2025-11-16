@@ -28,8 +28,10 @@ type GetNewsResponse struct {
 	*domain.NewsEntity
 }
 
-type CreateWeatherRecord struct {
-	TelegramID  int64   `json:"telegram_id"`
-	Temperature float64 `json:"temperature"`
-	Clothing    string  `json:"clothing"`
+type CreateWeatherRequest struct {
+	*domain.WeatherEntity
+}
+
+type CreateWeatherResponse struct {
+	City	string	`json:"city"`
 }
