@@ -14,7 +14,7 @@ type weatherCreater interface {
 type weatherProvider interface {
 	GetWeatherByCity(context.Context, string) (*domain.WeatherEntity, error)
 	//GetClothesByComb(context.Context, int) (*domain.WeatherClothesEntity, error)
-	//GetNewsByCity(context.Context, string) (*domain.NewsEntity, error)
+	GetNewsByCity(context.Context, string) (*domain.NewsEntity, error)
 }
 
 type weatherStorage interface {
@@ -56,7 +56,7 @@ func (s *WeatherService) GetWeatherClothes(ctx context.Context, id int64) (*doma
 	}
 	return clothes, nil
 }
-
+*/
 func (s *WeatherService) GetNews(ctx context.Context, city string) (*domain.NewsEntity, error) {
 	news, err := s.repo.GetNewsByCity(ctx, city)
 	if err != nil {
@@ -64,4 +64,4 @@ func (s *WeatherService) GetNews(ctx context.Context, city string) (*domain.News
 	}
 	return news, nil
 }
-*/
+

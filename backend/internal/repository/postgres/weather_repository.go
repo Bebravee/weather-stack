@@ -3,6 +3,11 @@ package postgres
 import (
 	"context"
 	"errors"
+	"net/http"
+    "net/url"
+	"log"
+	"io"
+	"fmt"
 
 	"github.com/chup1x/weather-stack/internal/domain"
 	"gorm.io/gorm"
@@ -42,14 +47,35 @@ func (r *WeatherRepository) GetClothesByComb(ctx context.Context, id int) ([]*do
 
 	return clothes, nil
 }
-
-func (r *WeatherRepository) GetNewsByCity(ctx context.Context, city string) ([]*domain.NewsEntity, error) {
-	news := []*domain.NewsEntity{}
+*/
+func (r *WeatherRepository) GetNewsByCity(ctx context.Context, city string) (*domain.NewsEntity, error) {
+	news := &domain.NewsEntity{}
 
 	if err := r.db.WithContext(ctx).Table("news").Where("city_id = ?", city).First(news).Error; err != nil {
-		return nil, err
 	}
+
+	baseURL := "https://newsapi.org/v2/everything"
+    params := url.Values{}
+    params.Add("q", "Санкт-Петербург")
+    params.Add("from", "2025-11-09")
+	params.Add("sortBy", "publishedAt")
+	params.Add("language", "ru")
+	params.Add("lapiKey", "10")
+    
+    fullURL := baseURL + "?" + params.Encode()
+
+    resp, err := http.Get(fullURL)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer resp.Body.Close()
+
+    body, err := io.ReadAll(resp.Body)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(string(body))
 
 	return news, nil
 }
-*/

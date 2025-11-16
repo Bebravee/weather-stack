@@ -92,17 +92,18 @@ func (cn *weatherController) GetWeatherClothesHandler(c *fiber.Ctx) error {
 
 	return c.JSON(res)
 }
-
+*/
 func (cn *weatherController) GetNewsHandler(c *fiber.Ctx) error {
 	var req GetNewsRequest
-	if err := c.BodyParser(&req); err != nil {
-		return c.SendStatus(fiber.StatusUnprocessableEntity)
+	log.Error(req)
+	if err := c.ParamsParser(&req); err != nil {
+		//return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 	if err := cn.validator.Struct(req); err != nil {
-		return c.SendStatus(fiber.StatusUnprocessableEntity)
+		//return c.SendStatus(fiber.StatusUnprocessableEntity)
 	}
 
-	city, err := cn.s.GetNews(c.UserContext(), req.city_n)
+	city, err := cn.s.GetNews(c.UserContext(), req.CityN)
 	if err != nil {
 		if errors.Is(err, domain.ErrUserNotFound) {
 			return c.SendStatus(fiber.StatusNotFound)
@@ -115,4 +116,3 @@ func (cn *weatherController) GetNewsHandler(c *fiber.Ctx) error {
 
 	return c.JSON(res)
 }
-*/
