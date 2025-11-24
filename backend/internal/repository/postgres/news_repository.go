@@ -16,6 +16,10 @@ func NewNewsRepository(db *gorm.DB) *newsRepository {
 	return &newsRepository{db: db}
 }
 
+func (r *newsRepository) CreateNewsRequest(ctx context.Context, new *domain.NewsEntity) error {
+	return r.db.WithContext(ctx).Table("news").Create(new).Error
+}
+
 func (r *newsRepository) GetNewsByCityID(ctx context.Context, cityID string) (*domain.NewsEntity, error) {
 	news := &domain.NewsEntity{}
 
@@ -25,6 +29,11 @@ func (r *newsRepository) GetNewsByCityID(ctx context.Context, cityID string) (*d
 		}
 		return nil, err
 	}
+		// if err := r.db.WithContext(ctx).Table("news").Create(news_en).Error; err != nil {
+		// 	log.Fatal("Error writing file to database:", err)
+		// 	return
+		// }
+		// return news, nil
 
 	return news, nil
 }

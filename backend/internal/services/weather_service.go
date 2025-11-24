@@ -42,48 +42,6 @@ func (s *WeatherService) CreateWeatherRecord(ctx context.Context, new *domain.We
 }
 
 func (s *WeatherService) GetWeather(ctx context.Context, city string) (*domain.WeatherEntity, error) {
-	//news_en := &domain.NewsEntity{}
-
-	baseURL := "https://newsapi.org/v2/everything"
-	params := url.Values{}
-	params.Add("q", "Санкт-Петербург")
-	params.Add("from", "2025-11-09")
-	params.Add("sortBy", "publishedAt")
-	params.Add("language", "ru")
-	params.Add("apiKey", "0fac40f7dcd34967af176019e1c6a526")
-
-	fullURL := baseURL + "?" + params.Encode()
-
-	resp, err := http.Get(fullURL)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer resp.Body.Close()
-
-	// _, err := io.ReadAll(resp.Body)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// if err := r.db.WithContext(ctx).Table("news").Where("city_id = ?", city).First(news_en).Error; err != nil {
-
-	// 	// filename := fmt.Sprintf("temp_news_%s.json", city)
-	// 	// err = os.WriteFile(".json", body, 0644)
-	// 	// if err != nil {
-	// 	// 	log.Fatal("Error writing file:", err)
-	// 	// }
-	// 	news, _ := json.Marshal(body)
-	// 	// news_en := &domain.NewsEntity{
-	// 	// 	PATH: filename,
-	// 	// }
-
-	// 	// if err := r.db.WithContext(ctx).Table("news").Create(news_en).Error; err != nil {
-	// 	// 	log.Fatal("Error writing file to database:", err)
-	// 	// 	return
-	// 	// }
-	// 	return news, nil
-	// }
-
 	weather, err := s.repo.GetWeatherByCity(ctx, city)
 	if err != nil {
 		return nil, fmt.Errorf("to select a weather by city: %w", err)

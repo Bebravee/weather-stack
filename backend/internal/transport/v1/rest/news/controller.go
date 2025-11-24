@@ -2,7 +2,8 @@ package weathercntrl
 
 import (
 	"errors"
-
+	"encoding/json"
+	"os"
 	"github.com/chup1x/weather-stack/internal/domain"
 	newsservice "github.com/chup1x/weather-stack/internal/services"
 	"github.com/go-playground/validator/v10"
@@ -40,8 +41,9 @@ func (cn *newsController) GetNewsHandler(c *fiber.Ctx) error {
 		log.Error(err.Error())
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
+	data, err := os.ReadFile(news.Path)
+	//err = json.Unmarshal(data, &res)
+	//res := GetNewsResponse{news}
 
-	res := GetNewsResponse{news}
-
-	return c.JSON(res)
+	return c.JSON(date)
 }
