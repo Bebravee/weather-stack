@@ -3,6 +3,7 @@ package postgres
 import (
 	"context"
 	"errors"
+	"time"
 
 	"github.com/chup1x/weather-stack/internal/domain"
 	"gorm.io/gorm"
@@ -23,9 +24,15 @@ func (r *WeatherRepository) CreateWeatherRequest(ctx context.Context, new *domai
 func (r *WeatherRepository) GetWeatherByCity(ctx context.Context, city string) (*domain.WeatherEntity, error) {
 	weather := &domain.WeatherEntity{}
 
-	if err := r.db.WithContext(ctx).Table("weather_requests").Where("city_id = ?", city).First(weather).Error; err != nil {
+	startOfDay := time.Now().Truncate(24 * time.Hour)
+
+	if err := r.db.WithContext(ctx).
+		Table("weather_requests").
+		Where("city_id = ? AND created_at >= ?", city, startOfDay).
+		Order("created_at DESC").
+		First(weather).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, domain.ErrUserNotFound
+			return nil, domain.ErrWeatherNotFound
 		}
 		return nil, err
 	}

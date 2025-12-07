@@ -39,4 +39,14 @@ func registerHandlers(router fiber.Router, cfg *config.Config) {
 	profile := router.Group("/profile")
 	profile.Post("/register", handlers.RegisterUserHandler)
 	profile.Get("/:id", handlers.GetUserHandler)
+	profile.Get("/by-telegram-id/:telegram_id", handlers.GetUserByTelegramHandler)
+
+	weather := router.Group("/weather")
+	weather.Get("/city/:city", handlers.GetWeatherByCityHandler)
+	weather.Get("/by-telegram-id/:telegram_id", handlers.GetWeatherByTelegramHandler)
+	weather.Get("/clothes/:telegram_id", handlers.GetClothesByTelegramHandler)
+
+	news := router.Group("/news")
+	news.Get("/city/:city", handlers.GetNewsByCityHandler)
+	news.Get("/by-telegram-id/:telegram_id", handlers.GetNewsByTelegramHandler)
 }

@@ -1,8 +1,12 @@
 package domain
 
 import (
+	"errors"
 	"time"
 )
+
+var ErrWeatherNotFound = errors.New("weather not found")
+var ErrClothesNotFound = errors.New("clothes not found")
 
 type WeatherEntity struct {
 	CityID      string    `json:"city" gorm:"city_id"`
@@ -16,5 +20,6 @@ type WeatherEntity struct {
 }
 
 type WeatherClothesEntity struct {
-	Path string `json:"path" gorm:"path"`
+	Code string `json:"code" gorm:"column:city_id"`
+	Path string `json:"path" gorm:"column:path"`
 }

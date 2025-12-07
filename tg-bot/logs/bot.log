@@ -1,0 +1,10 @@
+2025-12-07 17:50:30 | INFO     | logger_config:setup_logging:43 - Логирование:
+2025-12-07 17:51:18 | INFO     | logger_config:setup_logging:43 - Логирование:
+2025-12-07 17:51:20 | INFO     | config:__init__:18 - информация загружена из secured_data.json
+2025-12-07 17:51:20 | INFO     | database:__init__:43 - подключение к БД: NWBot.db
+2025-12-07 17:51:20 | INFO     | database:create_table:54 - проверка существования user_params
+2025-12-07 17:51:20 | SUCCESS  | database:create_table:70 - таблица user_params готова
+2025-12-07 17:51:20 | SUCCESS  | database:__init__:48 - подключение к БД прошло норм
+2025-12-07 17:51:20 | INFO     | llm_integration:__init__:10 - инициализация LLM клиента
+2025-12-07 17:51:20 | INFO     | __main__:main:7 - Запуск
+2025-12-07 17:51:20 | CRITICAL | __main__:main:29 - ошибка при запуске бота: 'Updater' object has no attribute '_Updater__polling_cleanup_cb' and no __dict__ for setting new attributes

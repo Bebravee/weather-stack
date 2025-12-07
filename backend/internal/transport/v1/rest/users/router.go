@@ -17,6 +17,6 @@ func RegisterUserRoutes(router fiber.Router, db *gorm.DB) {
 	auth.Post("/login", userCntrl.LoginHandler)
 
 	router.Get("/profile/by-id/:id", userCntrl.GetProfileHandler)
-	router.Get("/profile/by-telegram-id/:id", userCntrl.GetTelegramProfileHandler)
+	router.Get("/profile/by-telegram-id/:telegram_id", userCntrl.GetTelegramProfileHandler)
 	router.Patch("/profile", userCntrl.UpdateProfileHandler)
 }

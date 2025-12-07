@@ -30,7 +30,9 @@ func (n *newsClient) GetNewsByCityID(ctx context.Context, cityID string) (map[st
 	values := url.Values{}
 	values.Add("apiKey", n.apiKey)
 	values.Add("q", cityID)
-	values.Add("from", "2025-11-24")
+	// Берем неделю назад, иначе за текущий день часто пусто
+	values.Add("from", time.Now().AddDate(0, 0, -7).Format("2006-01-02"))
+	values.Add("to", time.Now().Format("2006-01-02"))
 	values.Add("sortBy", "publishedAt")
 	values.Add("language", "ru")
 

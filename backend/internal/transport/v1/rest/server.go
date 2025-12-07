@@ -44,7 +44,7 @@ func (s *Server) Start(_ context.Context, cfg *config.Config) error {
 	}
 
 	usercntrl.RegisterUserRoutes(api, db)
-	weathercntrl.RegisterWeatherRoutes(api, db)
+	weathercntrl.RegisterWeatherRoutes(api, cfg, db)
 	newscntrl.RegisterNewsRoutes(api, cfg, db)
 
 	if err := s.app.Listen(fmt.Sprintf("0.0.0.0:%s", cfg.Server.Port)); err != nil {

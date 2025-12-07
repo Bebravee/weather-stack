@@ -1,0 +1,1 @@
+2025-12-07 17:51:20 | CRITICAL | __main__:main:29 - ошибка при запуске бота: 'Updater' object has no attribute '_Updater__polling_cleanup_cb' and no __dict__ for setting new attributes

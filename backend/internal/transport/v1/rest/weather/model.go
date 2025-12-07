@@ -8,16 +8,16 @@ type GetWeatherHistoryRequest struct {
 	ID string `param:"id" validate:"required"`
 }
 
+type GetWeatherByTelegramRequest struct {
+	TelegramID int `params:"telegram_id" validate:"required"`
+}
+
 type GetWeatherHistoryResponse struct {
 	*domain.WeatherEntity
 }
 
 type GetWeatherClothesRequest struct {
-	User int64 `json:"telegram_id" validate:"required"`
-}
-
-type GetWeatherClothesResponse struct {
-	*domain.WeatherClothesEntity
+	TelegramID int `params:"telegram_id" validate:"required"`
 }
 
 type CreateWeatherRequest struct {

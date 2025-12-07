@@ -10,14 +10,14 @@ type RegisterUserRequest struct {
 	Name       string `json:"name" validate:"required"`
 	Sex        string `json:"sex" validate:"required"`
 	Age        int    `json:"age" validate:"required"`
-	City_n     string `json:"city_n" validate:"required"`
-	City_w     string `json:"city_w" validate:"required"`
-	Drop_time  string `json:"drop" validate:"required"`
-	t_comf     int    `json:"comf" validate:"required"`
-	t_tol      int    `json:"tol" validate:"required"`
-	t_puh      int    `json:"puh" validate:"required"`
-	temp1      int    `json:"temp1" validate:"required"`
-	TelegramID int64  `json:"TelegramID" validate:"required"`
+	CityN      string `json:"city_n" validate:"required"`
+	CityW      string `json:"city_w" validate:"required"`
+	DropTime   string `json:"drop_time" validate:"required"`
+	TComfort   int    `json:"t_comfort" validate:"required"`
+	TTol       int    `json:"t_tol" validate:"required"`
+	TPuh       int    `json:"t_puh" validate:"required"`
+	Temp1      int    `json:"temp1" validate:"required"`
+	TelegramID int64  `json:"telegram_id" validate:"required"`
 }
 
 type RegisterUserResponse struct {
@@ -25,21 +25,29 @@ type RegisterUserResponse struct {
 }
 
 type GetUserRequest struct {
-	ID uuid.UUID `param:"id"`
+	ID uuid.UUID `params:"id"`
 }
 
 type GetUserResponse struct {
 	ID         uuid.UUID `json:"id" gorm:"id"`
-	Name       string `json:"name" validate:"required"`
-	Sex        string `json:"sex" validate:"required"`
-	Age        int    `json:"age" validate:"required"`
-	City_n     string `json:"city_n" validate:"required"`
-	City_w     string `json:"city_w" validate:"required"`
-	Drop_time  string `json:"drop" validate:"required"`
-	t_comf     int    `json:"comf" validate:"required"`
-	t_tol      int    `json:"tol" validate:"required"`
-	t_puh      int    `json:"puh" validate:"required"`
-	temp1      int    `json:"temp1" validate:"required"`
-	TelegramID int64  `json:"TelegramID" validate:"required"`
-	CreatedAt time.Time `json:"created_at" gorm:"created_at"`
+	Name       string    `json:"name" validate:"required"`
+	Sex        string    `json:"sex" validate:"required"`
+	Age        int       `json:"age" validate:"required"`
+	CityN      string    `json:"city_n" validate:"required"`
+	CityW      string    `json:"city_w" validate:"required"`
+	DropTime   string    `json:"drop_time" validate:"required"`
+	TComfort   int       `json:"t_comfort" validate:"required"`
+	TTol       int       `json:"t_tol" validate:"required"`
+	TPuh       int       `json:"t_puh" validate:"required"`
+	Temp1      int       `json:"temp1" validate:"required"`
+	TelegramID int64     `json:"telegram_id" validate:"required"`
+	CreatedAt  time.Time `json:"created_at" gorm:"created_at"`
+}
+
+type GetCityRequest struct {
+	City string `params:"city" validate:"required"`
+}
+
+type GetTelegramRequest struct {
+	ID int `params:"telegram_id" validate:"required"`
 }

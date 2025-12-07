@@ -6,7 +6,7 @@ import (
 )
 
 type GetTelegramProfileRequest struct {
-	ID int `param:"telegram_id" validate:"required"`
+	ID int `params:"telegram_id" validate:"required"`
 }
 
 type GetTelegramProfileResponse struct {
@@ -14,7 +14,7 @@ type GetTelegramProfileResponse struct {
 }
 
 type GetProfileRequest struct {
-	ID domain.UserID `param:"user_id" validate:"required"`
+	ID domain.UserID `param:"id" validate:"required"`
 }
 
 type GetProfileResponse struct {

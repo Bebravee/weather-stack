@@ -1,7 +1,8 @@
 from loguru import logger
+import os
 import requests
 
-url = "http://localhost:8080/"
+url = os.environ.get("BASE_URL", "http://localhost:8080/")
 
 def post_register_user(usr_id: str, data):
     
@@ -12,12 +13,12 @@ def post_register_user(usr_id: str, data):
         "age": 69,
         "city_n": data[1],
         "city_w": data[5],
-        "drop": data[6],
-        "comf": data[2],
-        "tol": data[3],
-        "puh": data[4],
+        "drop_time": data[6],
+        "t_comfort": data[2],
+        "t_tol": data[3],
+        "t_puh": data[4],
         "temp1": float(str(data[2]) + str(data[3]) + str(data[4])),
-        "TelegramID": int(usr_id)
+        "telegram_id": int(usr_id)
     }
 
     try:
@@ -56,7 +57,7 @@ def get_user_profile(usr_id: str):
 
 def get_weather_with_profile(user_id: str):
     
-    address = f"weather/{user_id}"
+    address = f"weather/by-telegram-id/{user_id}"
 
     try:
         response = requests.get(url + address, timeout=10)

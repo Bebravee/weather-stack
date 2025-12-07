@@ -283,7 +283,7 @@ async def get_clothes_recommendation(city, user_temps=None):
 
 async def send_weather_success(message, temp_data):
     user_id = message.from_user.id
-    logger.info(f"отправка подтверждения температурных настроек user_id}")
+    logger.info(f"отправка подтверждения температурных настроек {user_id}")
     
     success_msg = f'''✅ Ваши температурные предпочтения сохранены!
 
